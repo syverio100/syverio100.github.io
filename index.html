@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analyst Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --accent-color: #0077b5;
+            --tech-bg: #eef2f5;
+            --tech-text: #4a5568;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --text-color: #e2e8f0;
+            --card-bg: #2d3748;
+            --accent-color: #00a0dc;
+            --tech-bg: #4a5568;
+            --tech-text: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        h1 { margin: 10px 0 5px 0; font-size: 2.5rem; }
+        .subtitle { font-size: 1.2rem; color: var(--accent-color); font-weight: 600; margin-bottom: 15px; }
+        .bio { line-height: 1.6; max-width: 600px; margin: 0 auto; }
+
+        .section-title {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .project-card h3 { margin-top: 0; color: var(--accent-color); }
+        .project-description { line-height: 1.6; margin-bottom: 15px; }
+
+        .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .project-tech span {
+            background-color: var(--tech-bg);
+            color: var(--tech-text);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .project-link:hover { text-decoration: underline; }
+
+        .code-snippet {
+            display: none;
+            background-color: #2d3748;
+            color: #f7fafc;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .project-img {
+            width: 100%;
+            border-radius: 6px;
+            margin-top: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .project-img:hover {
+            transform: scale(1.01);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙 Switch Mode</button>
+            <img src="profile.jpg" alt="Profile Picture" class="profile-img">
+            <h1>Data Analyst & Tech Explorer</h1>
+            <div class="subtitle">Data Analysis & Interactive Dashboards</div>
+            <p class="bio">
+                Results-driven Data Analyst specializing in data cleaning, optimization, and end-to-end processing. 
+                I transform messy, raw datasets into structured pipelines, design intuitive analytics dashboards that 
+                uncover actionable insights, and utilize front-end web development to build clean, interactive data presentations.
+            </p>
+        </header>
+
+        <main>
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="project-tech" style="margin-bottom: 40px;">
+                <span>Data Cleaning & Analysis (Python, Pandas)</span>
+                <span>Data Visualization (Power BI)</span>
+                <span>Database Management (SQL)</span>
+                <span>Web Development (HTML, CSS)</span>
+            </div>
+
+            <h2 class="section-title">Featured Data Projects</h2>
+
+            <div class="project-card">
+                <h3>Shoprite Sales Performance & Audit Dashboard</h3>
+                <p class="project-description">
+                    Engineered an end-to-end analytics solution to audit and evaluate retail sales performance. Developed a robust Python script using Pandas to programmatically ingest, clean, and deduplicate an unrefined sales dataset. Following data preparation, designed an interactive Power BI dashboard featuring dynamic sales trends, regional drill-downs, and key performance indicators to pinpoint revenue optimization opportunities.
+                </p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Pandas</span>
+                    <span>Power BI</span>
+                    <span>Data Auditing</span>
+                </div>
+                
+                <div class="project-link" onclick="toggleCode()">📂 View Python Code Snippet</div>
+                
+                <pre id="codeBlock" class="code-snippet">
+import pandas as pd
+
+# Load dataset and clean duplicates
+df = pd.read_excel('sales_data.xlsx')
+df_cleaned = df.drop_duplicates()
+
+# Reset index and verify rows
+df_cleaned.reset_index(drop=True, inplace=True)
+print(f"Data audit complete. Rows processed: {len(df_cleaned)}")</pre>
+
+                <a href="dashboard.png" target="_blank">
+                    <img src="dashboard.png" alt="Shoprite Sales Dashboard Preview" class="project-img">
+                </a>
+            </div>
+
+            <div class="project-card">
+                <h3>Global Operations & Sales Performance</h3>
+                <p class="project-description">
+                    Designed an interactive, executive-facing dashboard to track cross-regional revenue variations, organizational profit margins, and distribution efficiency metrics. This project involved standardizing multi-currency sales entries and engineering scalable data models within Power BI to deliver rapid, real-time insights for senior operational leadership.
+                </p>
+                <div class="project-tech">
+                    <span>Power BI</span>
+                    <span>DAX</span>
+                    <span>Data Modeling</span>
+                    <span>ETL Processing</span>
+                </div>
+                
+                <a href="dashboard_2.png" target="_blank">
+                    <img src="dashboard_2.png" alt="Global Operations Dashboard Preview" class="project-img">
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        function toggleCode() {
+            const codeBlock = document.getElementById('codeBlock');
+            if (codeBlock.style.display === 'block') {
+                codeBlock.style.display = 'none';
+            } else {
+                codeBlock.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
